@@ -18,7 +18,9 @@ body.correct{
 body.wrong{
     background-color: red;
 }
-.container{
+#questionBox{
+    
+    font-size: 34px;
     
 }
 
