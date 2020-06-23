@@ -14,7 +14,13 @@ var startTime = 60 * 3
 
    // here are the event handlers
   startBtn.on("click", startQuiz)
-  
+  btnA.on("click", checkAnswer )
+  btnB.on("click", checkAnswer )
+  btnC.on("click", checkAnswer )
+  btnD.on("click", checkAnswer )
+
+
+
   // here is the timer function
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -51,16 +57,12 @@ var startTime = 60 * 3
 
   function setNextQuestion(){
     showQuestion(shuffledQuestions[currentQuestionIndex]);
-    showAnswers(shuffledQuestions[currentQuestionIndex])
+    showAnswers(shuffledQuestions[currentQuestionIndex]);
+    
   };
-
-
-  function selectAnswer(){
 
 
   
-
-  };
  var questions = [
    {
      question: "What is Charlie's Job?",
@@ -78,24 +80,39 @@ var startTime = 60 * 3
       {text: 'Paddys Pub', correct: true },
       {text: 'The Fun House', correct: false },
       {text: 'Reggies', correct: false }
-    ]
-  },
+    ] 
+  }, 
  ]
   function showQuestion(question){
     questionBoxElement.text(question.question)
     
     
   }
-  function showAnswers(answers){
-  for (var i = 0; i < answers.length; i++){
-   
-   answersButtonElement.text(answers.answer[i])
-  }
+  
+  
+  
+  function showAnswers(){
+  //for (i = 0; i < 4; i++){
+    btnA.text(this.questions[currentQuestionIndex].answers[0].text)
+    btnB.text(this.questions[currentQuestionIndex].answers[1].text)
+    btnC.text(this.questions[currentQuestionIndex].answers[2].text)
+    btnD.text(this.questions[currentQuestionIndex].answers[3].text)
+    //console.log(this.questions[currentQuestionIndex].answers[i].text)
+  //}
   
     
   }
+  
+  function checkAnswer(question){
     
     
+    
+   
+   
+  
+  
+
+  }; 
     
     
    
