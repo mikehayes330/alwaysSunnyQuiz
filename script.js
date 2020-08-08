@@ -10,8 +10,7 @@ var score = 0;
 var currentQuestionIndex = 0;
 var shuffledQuestions;
 var startTime = 60 * 3;
-var scoreElement = $('#score');
-
+var scoreElement = $("#score");
 
 // here are the event handlers
 startBtn.on("click", startQuiz);
@@ -19,8 +18,6 @@ btnA.on("click", checkAnswer);
 btnB.on("click", checkAnswer);
 btnC.on("click", checkAnswer);
 btnD.on("click", checkAnswer);
-
-
 
 // start quiz function
 function startQuiz() {
@@ -30,34 +27,30 @@ function startQuiz() {
   startTimer(startTime, display);
   setNextQuestion();
 }
-console.log(display)
+
 function checkAnswer() {
   if (this.innerText === questions[currentQuestionIndex].answer) {
-   // trying to change color on correct
-   // $("body").addClass("correct");
+    // trying to change color on correct
+    // $("body").addClass("correct");
     $(".container").fadeOut(400).fadeIn(800);
-    currentQuestionIndex ++;
-    alert("CORRECT!!")
+    currentQuestionIndex++;
+    alert("CORRECT!!");
     setNextQuestion();
-    score ++;
+    score++;
   } else {
     // $('body').addClass('wrong');
     $(".container").fadeOut(400).fadeIn(800);
-    currentQuestionIndex ++;
+    currentQuestionIndex++;
     setNextQuestion();
-    alert("WRONG!!")
-    
-
-  
+    alert("WRONG!!");
+    score--;
   }
 }
 
 function setNextQuestion() {
-  
   showQuestion();
   showAnswers();
   displayScore();
-
 }
 
 var questions = [
@@ -84,7 +77,7 @@ var questions = [
   {
     title: "Who is Charlies roomate?",
     choices: ["Ted", "Frank", "The Bird", "Dennis"],
-    answer: "quotes",
+    answer: "Frank",
   },
   {
     title: "What is Charlies invention for kittens?",
@@ -98,12 +91,10 @@ var questions = [
   },
 ];
 
-console.log(questions[currentQuestionIndex].choices[0]);
+console.log(questions.length);
 
 function showQuestion() {
   questionBoxElement.text(questions[currentQuestionIndex].title);
-  
-
 }
 
 function showAnswers() {
@@ -120,8 +111,8 @@ function startTimer(duration, display) {
   var timer = duration,
     minutes,
     seconds;
-  
-    setInterval(function () {
+
+  setInterval(function () {
     minutes = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
 
@@ -129,19 +120,21 @@ function startTimer(duration, display) {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     display.text(minutes + ":" + seconds);
-
+    displayScore();
+    console.log(currentQuestionIndex);
     if (--timer < 0) {
       timer = duration;
     }
   }, 1000);
-
-
-  
-  
 }
 
-function displayScore(){
+function quizEnd() {
+  if (currentQuestionIndex === questions.length) {
+    alert("quiz is over");
+  }
+}
+console.log(questions.length);
 
-  
-
+function displayScore() {
+  scoreElement.text(score);
 }
