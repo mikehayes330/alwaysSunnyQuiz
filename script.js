@@ -91,12 +91,12 @@ var questions = [
   },
 ];
 
-console.log(questions.length);
 
 function showQuestion() {
   questionBoxElement.text(questions[currentQuestionIndex].title);
 }
 
+// tete
 function showAnswers() {
   //for (i = 0; i < 4; i++){
   btnA.text(questions[currentQuestionIndex].choices[0]);
